@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Caden — Roblox Portfolio</title>
+  <meta name="description" content="Roblox games portfolio: projects, roles, features, and links." />
+
+  <style>
+    :root{
+      --bgTop:#07070a;
+      --bgMid:#1b1b22;
+      --bgBot:#e7e7ea;
+
+      --card: rgba(255,255,255,.72);
+      --card2: rgba(255,255,255,.58);
+      --text:#0c0f16;
+      --muted:#3c465a;
+      --border: rgba(0,0,0,.10);
+      --shadow: 0 12px 32px rgba(0,0,0,.28);
+
+      --accent:#111827;      /* near-black */
+      --accent2:#4b5563;     /* slate */
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: linear-gradient(180deg, var(--bgTop) 0%, var(--bgMid) 42%, var(--bgBot) 120%);
+      color:var(--text);
+    }
+    a{color:inherit; text-decoration:none}
+
+    header{
+      display:flex; gap:16px; align-items:center; justify-content:space-between;
+      position:sticky; top:0; z-index:10;
+      padding:14px 18px;
+      background: rgba(255,255,255,.16);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.18);
+    }
+
+    .wrap{max-width:1100px; margin:0 auto; padding:26px 18px 80px}
+
+    .brand{display:flex; gap:12px; align-items:center}
+    .logo{
+      width:44px; height:44px; border-radius:14px;
+      background: rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.25);
+      box-shadow: var(--shadow);
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+    }
+    .logo img{width:100%; height:100%; object-fit:cover}
+    .brand h1{font-size:16px; margin:0; color: #ffffff}
+    .brand p{margin:0; font-size:13px; color: rgba(255,255,255,.75)}
+
+    .nav{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+    .pill{
+      border:1px solid rgba(255,255,255,.28);
+      background: rgba(0,0,0,.12);
+      padding:8px 10px; border-radius:999px; font-size:13px;
+      color: rgba(255,255,255,.85);
+      transition:.15s ease;
+    }
+    .pill:hover{background: rgba(255,255,255,.12)}
+    .cta{
+      background: rgba(255,255,255,.88);
+      color:#0b0f17;
+      border:none; padding:10px 12px; border-radius:999px;
+      font-size:13px; cursor:pointer;
+      box-shadow: 0 10px 24px rgba(0,0,0,.25);
+      font-weight:650;
+    }
+
+    .hero{padding:36px 0 16px}
+    .hero h2{
+      font-size:40px; line-height:1.1; margin:0 0 10px;
+      color: rgba(255,255,255,.96);
+      letter-spacing:-0.02em;
+    }
+    .hero p{
+      margin:0;
+      color: rgba(255,255,255,.76);
+      max-width:820px;
+      font-size:16px;
+      line-height:1.55;
+    }
+
+    .heroRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+    .chip{
+      border:1px solid rgba(255,255,255,.26);
+      padding:8px 12px; border-radius:999px; font-size:13px;
+      color: rgba(255,255,255,.82);
+      background: rgba(0,0,0,.14);
+    }
+
+    .toolbar{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      margin:18px 0 10px;
+    }
+    .search{
+      flex:1; min-width:220px;
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(0,0,0,.10);
+      border-radius:999px;
+      padding:12px 14px;
+      color: var(--text);
+      outline:none;
+      box-shadow: 0 10px 24px rgba(0,0,0,.14);
+    }
+    select{
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(0,0,0,.10);
+      border-radius:999px;
+      padding:12px 14px;
+      color: var(--text);
+      outline:none;
+      box-shadow: 0 10px 24px rgba(0,0,0,.14);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+      margin-top:12px;
+    }
+    .card{
+      grid-column: span 6;
+      background: var(--card);
+      border:1px solid rgba(0,0,0,.12);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      transition: transform .14s ease, border-color .14s ease, background .14s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(0,0,0,.22);
+      background: rgba(255,255,255,.82);
+    }
+    .thumb{
+      height:190px;
+      background: linear-gradient(135deg, rgba(0,0,0,.18), rgba(255,255,255,.26));
+      display:flex; align-items:center; justify-content:center;
+      border-bottom:1px solid rgba(0,0,0,.10);
+      position:relative;
+    }
+    .thumb img{width:100%; height:100%; object-fit:cover; display:block}
+    .badge{
+      position:absolute; left:12px; top:12px;
+      background: rgba(0,0,0,.65);
+      border: 1px solid rgba(255,255,255,.18);
+      padding:6px 10px; border-radius:999px;
+      font-size:12px; color: rgba(255,255,255,.94);
+    }
+    .body{padding:14px 14px 16px}
+    .title{display:flex; align-items:flex-start; justify-content:space-between; gap:10px}
+    .title h3{margin:0; font-size:18px}
+    .meta{color:var(--muted); font-size:13px; margin-top:4px}
+    .desc{color:var(--muted); font-size:14px; margin:10px 0 12px; line-height:1.5}
+    .tags{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{
+      font-size:12px;
+      color: rgba(12,15,22,.92);
+      border:1px solid rgba(0,0,0,.10);
+      padding:6px 10px; border-radius:999px;
+      background: rgba(255,255,255,.55);
+    }
+    .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 12px; border-radius:12px; font-size:13px;
+      border:1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.55);
+      color: var(--text);
+    }
+    .btn.primary{
+      background: rgba(17,24,39,.92);
+      border:none;
+      color: rgba(255,255,255,.95);
+      font-weight:650;
+    }
+
+    .section{
+      margin-top:28px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.14);
+      border-radius: var(--radius);
+      padding:18px;
+      color: rgba(255,255,255,.90);
+      backdrop-filter: blur(10px);
+    }
+    .section h4{margin:0 0 8px; font-size:16px}
+    .section p{margin:0; color: rgba(255,255,255,.78); line-height:1.6}
+
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    .contactCard{
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding:14px;
+    }
+    .contactCard .label{font-size:12px; letter-spacing:.06em; text-transform:uppercase; color: rgba(255,255,255,.66)}
+    .contactCard .value{margin-top:6px; font-size:14px; color: rgba(255,255,255,.92); word-break:break-word}
+    .footer{margin-top:22px; color: rgba(255,255,255,.60); font-size:13px; text-align:center}
+
+    @media (max-width: 900px){
+      .card{grid-column: span 12}
+      .hero h2{font-size:32px}
+      .contactGrid{grid-template-columns: 1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <img src="avatar.png" alt="Caden avatar" />
+      </div>
+      <div>
+        <h1>Caden</h1>
+        <p>Roblox Developer • Scripting • Systems • UI</p>
+      </div>
+    </div>
+    <div class="nav">
+      <a class="pill" href="#projects">Projects</a>
+      <a class="pill" href="#about">About</a>
+      <a class="pill" href="#contact">Contact</a>
+      <button class="cta" id="copyDiscord">Copy Discord</button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="hero">
+      <h2>Roblox Games I’ve Shipped & I’m Building</h2>
+      <p>
+        I specialize in <strong>Lua Roblox scripting</strong>—game systems, UI scripting, NPC behavior, and datastores.
+        I’m open to <strong>teams/projects</strong>, <strong>for-hire work</strong>, and <strong>commissions</strong>.
+      </p>
+
+      <div class="heroRow">
+        <div class="chip">Lua • Systems scripting</div>
+        <div class="chip">UI development + UI scripting</div>
+        <div class="chip">NPC AI + pathfinding</div>
+        <div class="chip">Datastores (multi-stat / layered)</div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="toolbar">
+        <input class="search" id="search" placeholder="Search projects (tycoon, horror, rng, datastore, ui, npc)..." />
+        <select id="roleFilter" aria-label="Filter by role">
+          <option value="all">All roles</option>
+          <option value="scripter">Scripter</option>
+          <option value="ui">UI Scripter</option>
+          <option value="lead">Lead Developer</option>
+        </select>
+      </div>
+
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section class="section" id="about">
+      <h4>About</h4>
+      <p>
+        I’m a Roblox developer focused on <strong>Lua scripting</strong>—building reliable systems that feel good to play.
+        My strengths are clean, modular code, UI scripting, NPC AI/pathfinding, and datastores (including multi-stat / layered saving).
+        I’m currently looking for a solid team to build with, plus for-hire and commission work.
+      </p>
+    </section>
+
+    <section class="section" id="contact">
+      <h4>Contact</h4>
+      <p>Best way to reach me is Discord. You can also check my Roblox profile below.</p>
+
+      <div class="contactGrid">
+        <div class="contactCard">
+          <div class="label">Discord</div>
+          <div class="value" id="discordValue">ShrimpinIsPimpin</div>
+        </div>
+        <div class="contactCard">
+          <div class="label">Roblox Profile</div>
+          <div class="value"><a class="pill" href="https://www.roblox.com/users/4784318235/profile" target="_blank" rel="noreferrer">View Profile</a></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">© <span id="year"></span> Caden</div>
+  </div>
+
+  <script>
+    const PROFILE = {
+      name: "Caden",
+      tagline: "Roblox Developer • Scripting • Systems • UI",
+      discord: "ShrimpinIsPimpin",
+    };
+
+    const PROJECTS = [
+      {
+        title: "Space Tycoon",
+        role: ["lead","scripter","ui"],
+        year: "2023",
+        status: "Released",
+        description:
+          "My first released project — a straightforward, classic tycoon where I learned the ropes. Simple by today’s standards, but it’s where I started building core systems like shops, gamepasses, and saving.",
+        tags: ["Tycoon","Shops","Gamepasses","Datastore","UI Scripting"],
+        playUrl: "https://www.roblox.com/games/15072342923/RELEASE-Space-Tycoon",
+        videoUrl: "",
+        imageUrl: "space_tycoon.png"
+      },
+      {
+        title: "Rebirth Adventure",
+        role: ["scripter","ui"],
+        year: "2024",
+        status: "Released",
+        description:
+          "My second release — a rebirth/simulator-style game with layered saving. This one shipped too fast, and although we fixed bugs later, the early issues hurt the rating. Big lesson in polish and testing before launch.",
+        tags: ["Simulator","Rebirths","Layered Datastore","Gamepasses","UI"],
+        playUrl: "https://www.roblox.com/games/89194377904930/Rebirth-Adventure",
+        videoUrl: "",
+        imageUrl: "rebirth_adventure.png"
+      },
+      {
+        title: "Coin Rain Simulator",
+        role: ["scripter","ui"],
+        year: "2024",
+        status: "Released",
+        description:
+          "A basic upgrade-focused simulator with random model drops and progression. I rushed this one and didn’t market it much because I wasn’t fully proud of the final polish — but it’s still a solid example of upgrade loops + saving.",
+        tags: ["Simulator","Upgrades","Random Drops","Datastore","Gamepasses"],
+        playUrl: "https://www.roblox.com/games/90620781803779/Coin-Rain-Simulator",
+        videoUrl: "",
+        imageUrl: "coin_rain_simulator.png"
+      },
+      {
+        title: "Nightmare Gas Station",
+        role: ["scripter","ui","lead"],
+        year: "Current",
+        status: "Unreleased • Current Project",
+        description:
+          "My suspense-first horror project: survive a night shift with objectives, conditional events, and NPC behavior that keeps runs fresh. Built to avoid “same jumpscare loop” gameplay — tension and tasks come first, with a few jump scares as spice.",
+        tags: ["Horror","70+ Events","NPCs","Pathfinding","Survival","Modular Scripts"],
+        playUrl: "",
+        videoUrl: "",
+        imageUrl: "nightmare_gas_station.png"
+      },
+      {
+        title: "Gun RNG",
+        role: ["scripter","lead"],
+        year: "Current",
+        status: "Unreleased • Current Project",
+        description:
+          "An RNG-style zombie wave survival game: roll crates for weapons, combine into Golden/Rainbow variants, and roll camos that grant abilities. Includes multi-place progression (3 worlds, 10 levels each) + endless mode, with odds calculated from weapon/variant/camo rarity.",
+        tags: ["RNG","Zombie Survival","Abilities","Leaderboards","Datastore","Endless Mode"],
+        playUrl: "",
+        videoUrl: "",
+        imageUrl: "gunrng.png"
+      }
+    ];
+
+    // Copy discord
+    document.getElementById("copyDiscord").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(PROFILE.discord);
+        const btn = document.getElementById("copyDiscord");
+        btn.textContent = "Copied!";
+        setTimeout(()=> btn.textContent = "Copy Discord", 1200);
+      } catch {
+        alert("Discord: " + PROFILE.discord);
+      }
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const grid = document.getElementById("grid");
+    const search = document.getElementById("search");
+    const roleFilter = document.getElementById("roleFilter");
+
+    function roleLabel(r){
+      const map = {scripter:"Scripter", ui:"UI Scripter", lead:"Lead Developer"};
+      return map[r] || r;
+    }
+
+    function render(){
+      const q = search.value.trim().toLowerCase();
+      const role = roleFilter.value;
+
+      const filtered = PROJECTS.filter(p => {
+        const matchesRole = role === "all" ? true : (p.role || []).includes(role);
+        const blob = [
+          p.title, p.description, (p.tags||[]).join(" "), (p.role||[]).join(" "), p.status, p.year
+        ].join(" ").toLowerCase();
+        const matchesSearch = q === "" ? true : blob.includes(q);
+        return matchesRole && matchesSearch;
+      });
+
+      grid.innerHTML = filtered.map(p => {
+        const badge = `${p.status || "Project"} • ${p.year || ""}`.trim();
+        const roles = (p.role || []).map(r => `<span class="tag">${roleLabel(r)}</span>`).join("");
+        const tags = (p.tags || []).map(t => `<span class="tag">${t}</span>`).join("");
+        const img = p.imageUrl ? `<img src="${p.imageUrl}" alt="${p.title} thumbnail">` : ``;
+
+        const playBtn = p.playUrl ? `<a class="btn primary" href="${p.playUrl}" target="_blank" rel="noreferrer">▶ Play</a>` : "";
+        const vidBtn  = p.videoUrl ? `<a class="btn" href="${p.videoUrl}" target="_blank" rel="noreferrer">🎬 Video</a>` : "";
+        const noteBtn = (!p.playUrl && !p.videoUrl) ? `<span class="btn" title="Private / not published yet">🔒 Not public yet</span>` : "";
+
+        return `
+          <article class="card">
+            <div class="thumb">
+              ${img}
+              <div class="badge">${badge}</div>
+            </div>
+            <div class="body">
+              <div class="title">
+                <div>
+                  <h3>${p.title}</h3>
+                  <div class="meta">${(p.role||[]).map(roleLabel).join(" • ")}</div>
+                </div>
+              </div>
+              <div class="desc">${p.description || ""}</div>
+              <div class="tags">${roles}${tags}</div>
+              <div class="actions">${playBtn}${vidBtn}${noteBtn}</div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      if(filtered.length === 0){
+        grid.innerHTML = `<div class="section" style="grid-column:1/-1;">No projects match that search/filter.</div>`;
+      }
+    }
+
+    search.addEventListener("input", render);
+    roleFilter.addEventListener("change", render);
+    render();
+  </script>
+</body>
+</html>
