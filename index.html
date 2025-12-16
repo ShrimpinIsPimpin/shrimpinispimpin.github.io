@@ -19,8 +19,8 @@
       --border: rgba(0,0,0,.10);
       --shadow: 0 12px 32px rgba(0,0,0,.28);
 
-      --accent:#111827;
-      --accent2:#4b5563;
+      --accent:#111827;      /* near-black */
+      --accent2:#4b5563;     /* slate */
       --radius: 18px;
     }
 
@@ -75,26 +75,33 @@
       font-weight:650;
     }
 
-    /* === VIDEO SHOWCASE (NEW) === */
-    .videoShowcase{display:flex; flex-direction:column; gap:18px; margin-bottom:36px}
+    /* ===== NEW: VIDEO SHOWCASE ===== */
+    .videoShowcase{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      margin: 0 0 28px;
+    }
     .videoCard{
-      border-radius:18px; overflow:hidden;
+      border-radius:18px;
+      overflow:hidden;
       box-shadow: var(--shadow);
-      background: rgba(0,0,0,.35);
       border:1px solid rgba(255,255,255,.25);
+      background: rgba(0,0,0,.25);
     }
     .videoCard iframe{
       width:100%;
-      aspect-ratio:16/9;
+      aspect-ratio: 16 / 9;
       display:block;
       border:0;
+      background: rgba(0,0,0,.35);
     }
     .videoLabel{
       padding:10px 14px;
       font-size:14px;
-      color: rgba(255,255,255,.9);
-      background: rgba(0,0,0,.6);
-      border-top:1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.85);
+      background: rgba(0,0,0,.55);
+      border-top: 1px solid rgba(255,255,255,.18);
     }
 
     .hero{padding:36px 0 16px}
@@ -215,6 +222,8 @@
       color: rgba(255,255,255,.90);
       backdrop-filter: blur(10px);
     }
+    .section h4{margin:0 0 8px; font-size:16px}
+    .section p{margin:0; color: rgba(255,255,255,.78); line-height:1.6}
 
     .contactGrid{
       display:grid;
@@ -230,7 +239,6 @@
     }
     .contactCard .label{font-size:12px; letter-spacing:.06em; text-transform:uppercase; color: rgba(255,255,255,.66)}
     .contactCard .value{margin-top:6px; font-size:14px; color: rgba(255,255,255,.92); word-break:break-word}
-
     .footer{margin-top:22px; color: rgba(255,255,255,.60); font-size:13px; text-align:center}
 
     @media (max-width: 900px){
@@ -240,103 +248,273 @@
     }
   </style>
 </head>
-
 <body>
-<header>
-  <div class="brand">
-    <div class="logo"><img src="avatar.png" alt="Caden avatar"></div>
-    <div>
-      <h1>Caden</h1>
-      <p>Roblox Developer • Scripting • Systems • UI</p>
-    </div>
-  </div>
-  <div class="nav">
-    <a class="pill" href="#projects">Projects</a>
-    <a class="pill" href="#about">About</a>
-    <a class="pill" href="#contact">Contact</a>
-    <button class="cta" id="copyDiscord">Copy Discord</button>
-  </div>
-</header>
-
-<div class="wrap">
-
-  <!-- VIDEO SHOWCASE -->
-  <section class="videoShowcase">
-    <div class="videoCard">
-      <iframe src="https://www.youtube.com/embed/a4ANvPByY4w" allowfullscreen></iframe>
-      <div class="videoLabel">GunRNG — Zombie pathfinding, gun usage, hitmarkers, and health bars</div>
-    </div>
-
-    <div class="videoCard">
-      <iframe src="https://www.youtube.com/embed/FHdqMFlpqlQ" allowfullscreen></iframe>
-      <div class="videoLabel">Nightmare Gas Station — NPC path tracking, queue system, and interactions</div>
-    </div>
-
-    <div class="videoCard">
-      <iframe src="https://www.youtube.com/embed/d-xyI3lxGbw" allowfullscreen></iframe>
-      <div class="videoLabel">GunRNG — GTA-style tutorial with dialogue and camera movement</div>
-    </div>
-  </section>
-
-  <section class="hero">
-    <h2>Roblox Games and Projects</h2>
-    <p>
-      I specialize in <strong>Lua Roblox scripting</strong>—game systems, UI scripting, NPC behavior, and datastores.
-      I’m open to <strong>teams/projects</strong>, <strong>for-hire work</strong>, and <strong>commissions</strong>.
-    </p>
-
-    <div class="heroRow">
-      <div class="chip">Lua • Systems scripting</div>
-      <div class="chip">UI development + UI scripting</div>
-      <div class="chip">NPC AI + pathfinding</div>
-      <div class="chip">Datastores (multi-stat / layered)</div>
-    </div>
-  </section>
-
-  <!-- EVERYTHING ELSE BELOW IS UNCHANGED -->
-
-  <section id="projects">
-    <div class="toolbar">
-      <input class="search" id="search" placeholder="Search projects (tycoon, horror, rng, datastore, ui, npc)..." />
-      <select id="roleFilter">
-        <option value="all">All roles</option>
-        <option value="scripter">Scripter</option>
-        <option value="ui">UI Scripter</option>
-        <option value="lead">Lead Developer</option>
-      </select>
-    </div>
-    <div class="grid" id="grid"></div>
-  </section>
-
-  <section class="section" id="about">
-    <h4>About</h4>
-    <p>…</p>
-  </section>
-
-  <section class="section" id="contact">
-    <h4>Contact</h4>
-    <div class="contactGrid">
-      <div class="contactCard">
-        <div class="label">Discord</div>
-        <div class="value">ShrimpinIsPimpin</div>
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <img src="avatar.png" alt="Caden avatar" />
       </div>
-      <div class="contactCard">
-        <div class="label">Business Email</div>
-        <div class="value">
-          <a class="pill" href="mailto:shrimpindev@gmail.com">shrimpindev@gmail.com</a>
+      <div>
+        <h1>Caden</h1>
+        <p>Roblox Developer • Scripting • Systems • UI</p>
+      </div>
+    </div>
+    <div class="nav">
+      <a class="pill" href="#projects">Projects</a>
+      <a class="pill" href="#about">About</a>
+      <a class="pill" href="#contact">Contact</a>
+      <button class="cta" id="copyDiscord">Copy Discord</button>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- ✅ NEW: YouTube videos at the top -->
+    <section class="videoShowcase">
+      <div class="videoCard">
+        <iframe
+          src="https://www.youtube.com/embed/a4ANvPByY4w"
+          title="PathFindingAndGuns"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+        <div class="videoLabel">GunRNG — Zombie pathfinding, gun usage, hitmarkers, and health bars</div>
+      </div>
+
+      <div class="videoCard">
+        <iframe
+          src="https://www.youtube.com/embed/FHdqMFlpqlQ"
+          title="PathTrackingAndInteractions"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+        <div class="videoLabel">Nightmare Gas Station — NPC path tracking, queue system, and interactions</div>
+      </div>
+
+      <div class="videoCard">
+        <iframe
+          src="https://www.youtube.com/embed/d-xyI3lxGbw"
+          title="TutorialShowcase"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+        <div class="videoLabel">GunRNG — GTA-style tutorial with dialogue and camera movement</div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <!-- ✅ CHANGED TITLE -->
+      <h2>Roblox Games and Projects</h2>
+      <p>
+        I specialize in <strong>Lua Roblox scripting</strong>—game systems, UI scripting, NPC behavior, and datastores.
+        I’m open to <strong>teams/projects</strong>, <strong>for-hire work</strong>, and <strong>commissions</strong>.
+      </p>
+
+      <div class="heroRow">
+        <div class="chip">Lua • Systems scripting</div>
+        <div class="chip">UI development + UI scripting</div>
+        <div class="chip">NPC AI + pathfinding</div>
+        <div class="chip">Datastores (multi-stat / layered)</div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="toolbar">
+        <input class="search" id="search" placeholder="Search projects (tycoon, horror, rng, datastore, ui, npc)..." />
+        <select id="roleFilter" aria-label="Filter by role">
+          <option value="all">All roles</option>
+          <option value="scripter">Scripter</option>
+          <option value="ui">UI Scripter</option>
+          <option value="lead">Lead Developer</option>
+        </select>
+      </div>
+
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section class="section" id="about">
+      <h4>About</h4>
+      <p>
+        I’m a Roblox developer focused on <strong>Lua scripting</strong>—building reliable systems that feel good to play.
+        My strengths are clean, modular code, UI scripting, NPC AI/pathfinding, and datastores (including multi-stat / layered saving).
+        I’m currently looking for a solid team to build with, plus for-hire and commission work.
+      </p>
+    </section>
+
+    <section class="section" id="contact">
+      <h4>Contact</h4>
+      <p>Best way to reach me is Discord. You can also check my Roblox profile below.</p>
+
+      <!-- ✅ UPDATED: Discord + Email next to each other, Roblox profile kept -->
+      <div class="contactGrid">
+        <div class="contactCard">
+          <div class="label">Discord</div>
+          <div class="value" id="discordValue">ShrimpinIsPimpin</div>
+        </div>
+
+        <div class="contactCard">
+          <div class="label">Business Email</div>
+          <div class="value">
+            <a class="pill" href="mailto:shrimpindev@gmail.com">shrimpindev@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contactCard" style="grid-column: 1 / -1;">
+          <div class="label">Roblox Profile</div>
+          <div class="value">
+            <a class="pill" href="https://www.roblox.com/users/4784318235/profile" target="_blank" rel="noreferrer">
+              View Profile
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="footer">© <span id="year"></span> Caden</div>
-</div>
+    <div class="footer">© <span id="year"></span> Caden</div>
+  </div>
 
-<script>
-document.getElementById("copyDiscord").onclick = async () => {
-  await navigator.clipboard.writeText("ShrimpinIsPimpin");
-};
-document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+  <script>
+    const PROFILE = {
+      name: "Caden",
+      tagline: "Roblox Developer • Scripting • Systems • UI",
+      discord: "ShrimpinIsPimpin",
+    };
+
+    const PROJECTS = [
+      {
+        title: "Space Tycoon",
+        role: ["lead","scripter","ui"],
+        year: "2023",
+        status: "Released",
+        description:
+          "My first released project — a straightforward, classic tycoon where I learned the ropes. Simple by today’s standards, but it’s where I started building core systems like shops, gamepasses, and saving.",
+        tags: ["Tycoon","Shops","Gamepasses","Datastore","UI Scripting"],
+        playUrl: "https://www.roblox.com/games/15072342923/RELEASE-Space-Tycoon",
+        videoUrl: "",
+        imageUrl: "space_tycoon.png"
+      },
+      {
+        title: "Rebirth Adventure",
+        role: ["scripter","ui"],
+        year: "2024",
+        status: "Released",
+        description:
+          "My second release — a rebirth/simulator-style game with layered saving. This one shipped too fast, and although we fixed bugs later, the early issues hurt the rating. Big lesson in polish and testing before launch.",
+        tags: ["Simulator","Rebirths","Layered Datastore","Gamepasses","UI"],
+        playUrl: "https://www.roblox.com/games/89194377904930/Rebirth-Adventure",
+        videoUrl: "",
+        imageUrl: "rebirth_adventure.png"
+      },
+      {
+        title: "Coin Rain Simulator",
+        role: ["scripter","ui"],
+        year: "2024",
+        status: "Released",
+        description:
+          "A basic upgrade-focused simulator with random model drops and progression. I rushed this one and didn’t market it much because I wasn’t fully proud of the final polish — but it’s still a solid example of upgrade loops + saving.",
+        tags: ["Simulator","Upgrades","Random Drops","Datastore","Gamepasses"],
+        playUrl: "https://www.roblox.com/games/90620781803779/Coin-Rain-Simulator",
+        videoUrl: "",
+        imageUrl: "coin_rain_simulator.png"
+      },
+      {
+        title: "Nightmare Gas Station",
+        role: ["scripter","ui","lead"],
+        year: "Current",
+        status: "Unreleased • Current Project",
+        description:
+          "My suspense-first horror project: survive a night shift with objectives, conditional events, and NPC behavior that keeps runs fresh. Built to avoid “same jumpscare loop” gameplay — tension and tasks come first, with a few jump scares as spice.",
+        tags: ["Horror","70+ Events","NPCs","Pathfinding","Survival","Modular Scripts"],
+        playUrl: "",
+        videoUrl: "",
+        imageUrl: "nightmare_gas_station.png"
+      },
+      {
+        title: "Gun RNG",
+        role: ["scripter","lead"],
+        year: "Current",
+        status: "Unreleased • Current Project",
+        description:
+          "An RNG-style zombie wave survival game: roll crates for weapons, combine into Golden/Rainbow variants, and roll camos that grant abilities. Includes multi-place progression (3 worlds, 10 levels each) + endless mode, with odds calculated from weapon/variant/camo rarity.",
+        tags: ["RNG","Zombie Survival","Abilities","Leaderboards","Datastore","Endless Mode"],
+        playUrl: "",
+        videoUrl: "",
+        imageUrl: "gunrng.png"
+      }
+    ];
+
+    // Copy discord
+    document.getElementById("copyDiscord").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(PROFILE.discord);
+        const btn = document.getElementById("copyDiscord");
+        btn.textContent = "Copied!";
+        setTimeout(()=> btn.textContent = "Copy Discord", 1200);
+      } catch {
+        alert("Discord: " + PROFILE.discord);
+      }
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const grid = document.getElementById("grid");
+    const search = document.getElementById("search");
+    const roleFilter = document.getElementById("roleFilter");
+
+    function roleLabel(r){
+      const map = {scripter:"Scripter", ui:"UI Scripter", lead:"Lead Developer"};
+      return map[r] || r;
+    }
+
+    function render(){
+      const q = search.value.trim().toLowerCase();
+      const role = roleFilter.value;
+
+      const filtered = PROJECTS.filter(p => {
+        const matchesRole = role === "all" ? true : (p.role || []).includes(role);
+        const blob = [
+          p.title, p.description, (p.tags||[]).join(" "), (p.role||[]).join(" "), p.status, p.year
+        ].join(" ").toLowerCase();
+        const matchesSearch = q === "" ? true : blob.includes(q);
+        return matchesRole && matchesSearch;
+      });
+
+      grid.innerHTML = filtered.map(p => {
+        const badge = `${p.status || "Project"} • ${p.year || ""}`.trim();
+        const roles = (p.role || []).map(r => `<span class="tag">${roleLabel(r)}</span>`).join("");
+        const tags = (p.tags || []).map(t => `<span class="tag">${t}</span>`).join("");
+        const img = p.imageUrl ? `<img src="${p.imageUrl}" alt="${p.title} thumbnail">` : ``;
+
+        const playBtn = p.playUrl ? `<a class="btn primary" href="${p.playUrl}" target="_blank" rel="noreferrer">▶ Play</a>` : "";
+        const vidBtn  = p.videoUrl ? `<a class="btn" href="${p.videoUrl}" target="_blank" rel="noreferrer">🎬 Video</a>` : "";
+        const noteBtn = (!p.playUrl && !p.videoUrl) ? `<span class="btn" title="Private / not published yet">🔒 Not public yet</span>` : "";
+
+        return `
+          <article class="card">
+            <div class="thumb">
+              ${img}
+              <div class="badge">${badge}</div>
+            </div>
+            <div class="body">
+              <div class="title">
+                <div>
+                  <h3>${p.title}</h3>
+                  <div class="meta">${(p.role||[]).map(roleLabel).join(" • ")}</div>
+                </div>
+              </div>
+              <div class="desc">${p.description || ""}</div>
+              <div class="tags">${roles}${tags}</div>
+              <div class="actions">${playBtn}${vidBtn}${noteBtn}</div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      if(filtered.length === 0){
+        grid.innerHTML = `<div class="section" style="grid-column:1/-1;">No projects match that search/filter.</div>`;
+      }
+    }
+
+    search.addEventListener("input", render);
+    roleFilter.addEventListener("change", render);
+    render();
+  </script>
 </body>
 </html>
